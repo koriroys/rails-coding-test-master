@@ -46,6 +46,8 @@ ON cat.id = p.category_id;
 
 5. Use active record methods to achieve the result above.
 
+Customer.select("customers.id as customer_id", "customers.firstname as customer_first_name", "categories.id as category_id", "categories.name as category_name").joins(orders: { product: :category })
+
 
 
 6. Extend ruby Hash Class to use your own implementation of the [Hash#dig](http://ruby-doc.org/core-2.3.0_preview1/Hash.html#method-i-dig) method without ruby 2.3. Make it available in the Rails app.

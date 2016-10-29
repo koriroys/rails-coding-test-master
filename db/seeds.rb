@@ -29,3 +29,8 @@ statuses = Order.statuses.values
   created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
   Order.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
 end
+
+c = Customer.create!(firstname: "Bob", email: "bob@example.com", password: "bobone")
+
+created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
+c.orders.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
