@@ -10,9 +10,14 @@
   Item.create!(name: Faker::Commerce.material)
 end
 
+3.times do
+  Category.create(name: Faker::Color.color_name)
+end
+
 item_ids = Item.pluck(:id)
+category_ids = Category.pluck(:id)
 30.times do
-  p = Product.create(name: Faker::Book.title, price: Faker::Commerce.price)
+  p = Product.create(name: Faker::Book.title, price: Faker::Commerce.price, category_id: category_ids.sample)
   item_ids.sample(rand(5) + 2).each do |item_id|
     p.product_items.create!(item_id: item_id, quantity: (rand(10) + 1) )
   end

@@ -34,7 +34,19 @@ customer_id | customer_first_name | category_id | category_name
 --- | --- | --- | --- | ---
 1 |John | 1 | Bouquets
 
+
+SELECT cu.id, cu.firstname, p.id, cat.id, cat.name
+FROM customers cu
+JOIN orders o
+ON o.customer_id = cu.id
+JOIN products p
+ON o.product_id = p.id
+JOIN categories cat
+ON cat.id = p.category_id;
+
 5. Use active record methods to achieve the result above.
+
+
 
 6. Extend ruby Hash Class to use your own implementation of the [Hash#dig](http://ruby-doc.org/core-2.3.0_preview1/Hash.html#method-i-dig) method without ruby 2.3. Make it available in the Rails app.
 
