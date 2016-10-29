@@ -52,6 +52,10 @@ Customer.select("customers.id as customer_id", "customers.firstname as customer_
 
 6. Extend ruby Hash Class to use your own implementation of the [Hash#dig](http://ruby-doc.org/core-2.3.0_preview1/Hash.html#method-i-dig) method without ruby 2.3. Make it available in the Rails app.
 
+1: a library already exists that does this, so why would I re-invent it? Just adding the gem to Gemfile makes it available to use in the Rails app. Plus it is tested and seems to follow the Ruby 2.3 behavior. So I will use that: e.g.: https://github.com/Invoca/ruby_dig
+
+
+
 7. Analytics
 
   *We need a weekly summary page displaying:*

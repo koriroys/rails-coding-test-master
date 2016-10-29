@@ -18,6 +18,8 @@ gem 'turbolinks'
 
 # user authentication
 gem 'devise', '~> 4.0'
+# dig method in Ruby < 2.3. Remove when upgrade to 2.3
+gem 'ruby_dig'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
