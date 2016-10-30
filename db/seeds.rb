@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-15.times do
+3.times do
   Item.create!(name: Faker::Commerce.material)
 end
 
@@ -25,7 +25,7 @@ end
 
 product_ids = Product.pluck(:id)
 statuses = Order.statuses.values
-100.times do
+10.times do
   created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
   Order.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
 end

@@ -17,4 +17,23 @@
   </tbody>
 </table>
 
+<hr>
 
+<table>
+  <thead>
+    <tr>
+      <th>Item Id</th>
+      <th>Item Name</th>
+      <th>Quantity Sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items_sold_count.each do |item, count| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
