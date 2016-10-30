@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :customers
+  devise_for :customers, controllers: { registrations: "customers/registrations" }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
