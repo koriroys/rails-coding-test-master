@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get "account" => "account#index"
+  get "dashboard/customers" => "dashboard#customers"
   get "dashboard" => "dashboard#index"
   get "dashboard/:date" => "dashboard#dashboard", as: :date_dashboard
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

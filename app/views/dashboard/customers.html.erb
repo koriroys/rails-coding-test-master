@@ -1,0 +1,23 @@
+<h2>Customers</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Recurring Customers</th>
+      <th>New Customers</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @new_and_old_customers.each do |month_name, new_customer_count, repeat_customer_count, total_customer_count| %>
+      <tr>
+        <td><%= month_name %></td>
+        <td><%= new_customer_count %></td>
+        <td><%= repeat_customer_count %></td>
+        <td><%= total_customer_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
