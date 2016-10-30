@@ -10,17 +10,7 @@ class DashboardController < ApplicationController
     @products_sold_count = Order.sold_count_for_week_starting_on(@day)
 
     # 2. Breakdown by items of sold quantities (based on orders.created_at)
-    items_sold_count = Order.includes(:items)
-      .from_week_starting_on(@day)
-      .map(&:items)
-      .flatten
-      .group_by { |item| item.id }
-      .map { |k, v| [k, v.size] }
-      .to_h
-
-    items = Item.find(items_sold_count.keys)
-
-    @items_sold_count = items.map { |item| [item, items_sold_count[item.id]] }.to_h
+    @items_sold_count = Order.items_sold_count(@day)
 
     # 3. Add asynchronous navigation to change the displayed week
     # just uses turbolinks, xhr automatically

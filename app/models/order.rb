@@ -12,6 +12,19 @@ class Order < ActiveRecord::Base
       .count
   }
 
+  def self.items_sold_count(start_date)
+    sold_count = includes(:items)
+      .from_week_starting_on(start_date)
+      .map(&:items)
+      .flatten
+      .group_by { |item| item.id }
+      .map { |k, v| [k, v.size] }
+      .to_h
+
+    items = Item.find(sold_count.keys)
+
+    items.map { |item| [item, sold_count[item.id]] }.to_h
+  end
 
   enum status: [:draft, :confirmed, :canceled]
 end
