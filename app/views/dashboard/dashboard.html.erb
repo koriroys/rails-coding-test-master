@@ -44,3 +44,24 @@
     <% end %>
   </tbody>
 </table>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th># of Orders</th>
+      <th># of Customers</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders_count.each do |order_count, customer_count| %>
+      <tr>
+        <td><%= pluralize(order_count, "order") %></td>
+        <td><%= customer_count %></td>
+        <td><%= number_to_percentage((customer_count.to_f / @total_orders) * 100, precision: 0) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

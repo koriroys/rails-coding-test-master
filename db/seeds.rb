@@ -23,14 +23,24 @@ category_ids = Category.pluck(:id)
   end
 end
 
+c = Customer.create!(firstname: "Bob", email: "bob@example.com", password: "bobone")
+c2 = Customer.create!(firstname: "James", email: "james@example.com", password: "james1")
+c3 = Customer.create!(firstname: "Koko", email: "koko@example.com", password: "kokobongo")
+
+created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
 product_ids = Product.pluck(:id)
 statuses = Order.statuses.values
 10.times do
   created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
-  Order.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
+  c.orders.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
 end
 
-c = Customer.create!(firstname: "Bob", email: "bob@example.com", password: "bobone")
+5.times do
+  created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
+  c2.orders.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
+end
 
-created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
-c.orders.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
+7.times do
+  created_datetime = Faker::Time.between(2.weeks.ago, DateTime.now)
+  c3.orders.create!(product_id: product_ids.sample, status: statuses.sample, created_at: created_datetime, updated_at: created_datetime)
+end
