@@ -1,3 +1,10 @@
+<h2>Sales Summary For the Week of
+<%= @day %> to <%= @day + 6.days %>
+</h2>
+
+<%= link_to "Previous Week", date_dashboard_path(@day - 1.week) %>
+<%= link_to "Next Week", date_dashboard_path(@day + 1.week)  %>
+<%= link_to "Current Week", dashboard_path %>
 <table>
   <thead>
     <tr>
