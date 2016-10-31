@@ -15,7 +15,10 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   end
 
   def generate_fake_orders(customer)
+    return unless customer.persisted?
+
     product_ids = Product.pluck(:id)
+
     5.times do
       timestamp = Faker::Time.between(2.weeks.ago, DateTime.now)
       customer.orders.create!(

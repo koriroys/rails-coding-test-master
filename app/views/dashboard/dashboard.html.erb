@@ -2,66 +2,90 @@
 <%= @day %> to <%= @day + 6.days %>
 </h2>
 
-<%= link_to "Previous Week", date_dashboard_path(@day - 1.week) %>
-<%= link_to "Next Week", date_dashboard_path(@day + 1.week)  %>
+<%= link_to date_dashboard_path(@day - 1.week) do %>
+  <%= fa_icon "chevron-left" %> Previous Week
+<% end %>
+|
 <%= link_to "Current Week", dashboard_path %>
-<table>
-  <thead>
-    <tr>
-      <th>Product Id</th>
-      <th>Product Name</th>
-      <th>Quantity Sold</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products_sold_count.each do |product, quantity_sold| %>
-      <tr>
-        <td><%= product.id %></td>
-        <td><%= product.name %></td>
-        <td><%= quantity_sold %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+|
+<%= link_to date_dashboard_path(@day + 1.week) do %>
+   Next Week <%= fa_icon "chevron-right" %>
+<% end %>
 
-<hr>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#products-sold" role="tab">Products Sold</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#items-sold" role="tab">Items Sold</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#customer-order-volume" role="tab">Customer Order Volume</a>
+  </li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Item Id</th>
-      <th>Item Name</th>
-      <th>Quantity Sold</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items_sold_count.each do |item, count| %>
-      <tr>
-        <td><%= item.id %></td>
-        <td><%= item.name %></td>
-        <td><%= count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="products-sold" role="tabpanel">
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Product Id</th>
+          <th>Product Name</th>
+          <th>Quantity Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products_sold_count.each do |product, quantity_sold| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= quantity_sold %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="items-sold" role="tabpanel">
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Item Id</th>
+          <th>Item Name</th>
+          <th>Quantity Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items_sold_count.each do |item, count| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="customer-order-volume" role="tabpanel">
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th># of Orders</th>
+          <th># of Customers</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders_count.each do |order_count, customer_count| %>
+          <tr>
+            <td><%= pluralize(order_count, "order") %></td>
+            <td><%= customer_count %></td>
+            <td><%= number_to_percentage((customer_count.to_f / @total_orders) * 100, precision: 0) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<hr>
-
-<table>
-  <thead>
-    <tr>
-      <th># of Orders</th>
-      <th># of Customers</th>
-      <th>Percentage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders_count.each do |order_count, customer_count| %>
-      <tr>
-        <td><%= pluralize(order_count, "order") %></td>
-        <td><%= customer_count %></td>
-        <td><%= number_to_percentage((customer_count.to_f / @total_orders) * 100, precision: 0) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

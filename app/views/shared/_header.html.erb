@@ -1,12 +1,27 @@
-<li>
-  <%= link_to "Orders", account_path %>
-</li>
-<% if customer_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_customer_session_path, :method => :delete) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_customer_session_path)  %>
-  </li>
-<% end %>
+<nav class="navbar navbar-light bg-faded">
+  <%= link_to "Flower Power", root_path, class: "navbar-brand" %>
+  <ul class="nav navbar-nav">
+    <li class="nav-item">
+      <%= link_to "My Orders", account_path, class: "nav-link" %>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+      <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+        <%= link_to "Sales by week", dashboard_path, class: "dropdown-item" %>
+        <%= link_to "Return customers", dashboard_customers_path, class: "dropdown-item" %>
+      </div>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav float-xs-right">
+    <% if customer_signed_in? %>
+      <li class="nav-item">
+      <%= link_to('Logout', destroy_customer_session_path, :method => :delete, class: "btn btn-outline-danger") %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+      <%= link_to('Login', new_customer_session_path, class: "btn btn-outline-primary")  %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

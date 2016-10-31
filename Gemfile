@@ -20,6 +20,9 @@ gem 'turbolinks'
 gem 'devise', '~> 4.0'
 # dig method in Ruby < 2.3. Remove when upgrade to 2.3
 gem 'ruby_dig'
+# put some lipstick on the pig
+gem 'bootstrap', '~> 4.0.0.alpha5'
+gem "font-awesome-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

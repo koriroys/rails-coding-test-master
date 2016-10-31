@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     redirect_to date_dashboard_path(Date.today - 6.days)
   end
