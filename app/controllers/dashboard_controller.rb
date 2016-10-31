@@ -19,17 +19,14 @@ class DashboardController < ApplicationController
 
     # build list of month ranges to get orders for that month
     oldest_order_date = Date.parse(Order.order(:created_at).first.created_at.to_s)
-    order_date = oldest_order_date
+    order_date = oldest_order_date.dup
     today = Date.today
     month_ranges = []
+
     while order_date < today do
       month_ranges << order_date.all_month
       order_date = order_date.next_month
     end
-
-    @month_ranges = month_ranges.dup
-
-    customers = []
 
     # get customers who ordered each month
     @customers_by_month = month_ranges.map do |month|
@@ -54,10 +51,5 @@ class DashboardController < ApplicationController
 
       [month_name, repeat_customers.size, new_customers.size, this_month_customers.size]
     }
-
-    # get customers who ordered each month
-
-
-    @row_months = []
   end
 end
