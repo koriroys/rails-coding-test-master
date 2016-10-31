@@ -48,16 +48,11 @@ A library already exists that does this, so why would I re-invent it? Just addin
 
 7. Analytics
 
-  To see the weekly summary, navigate to localhost:3000/dashboard
-
   *We need a weekly summary page displaying:*
   1. Breakdown by product of sold quantities (based on orders.created_at)
   2. Breakdown by items of sold quantities (based on orders.created_at)
   3. Add asynchronous navigation to change the displayed week
   4. Display order uniq customer count by number of orders (example 1)
-
-  To see the recurring customers, navigate to localhost:3000/dashboard/customers
-
   5. (*On a separate view*) Display repartition between reccuring and new customers for each month (example 2)
 
 ***Example 1***
